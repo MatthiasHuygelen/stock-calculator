@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator, DollarSign, Percent, ToggleLeft, Calendar } from 'lucide-react';
+import { Calculator, Euro, Percent, ToggleLeft, Calendar } from 'lucide-react';
 import { ThemeToggle } from './ThemeContext';
 
 interface TCOCalculation {
@@ -110,7 +110,7 @@ function App() {
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
           <div className="flex items-center gap-2 mb-6">
             <Calculator className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">ETF TCO Calculator</h1>
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Stock/ETF Calculator</h1>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -120,11 +120,11 @@ function App() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                    Start Capital ($)
+                    Start Capital (€)
                   </label>
                   <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <DollarSign className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+                      <Euro className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                     </div>
                     <input
                       type="number"
@@ -139,7 +139,7 @@ function App() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                      Recurring Investment ({inputs.isMonthly ? 'Monthly' : 'Yearly'}) ($)
+                      Recurring Investment ({inputs.isMonthly ? 'Monthly' : 'Yearly'}) (€)
                     </label>
                     <button
                       onClick={() => setInputs(prev => ({ ...prev, isMonthly: !prev.isMonthly }))}
@@ -151,7 +151,7 @@ function App() {
                   </div>
                   <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <DollarSign className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+                      <Euro className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                     </div>
                     <input
                       type="number"
@@ -198,7 +198,7 @@ function App() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                      Expense Ratio {isPercentageMode ? '(%)' : '($ per year)'}
+                      Expense Ratio {isPercentageMode ? '(%)' : '(€ per year)'}
                     </label>
                     <button
                       onClick={() => setIsPercentageMode(!isPercentageMode)}
@@ -213,7 +213,7 @@ function App() {
                       {isPercentageMode ? (
                         <Percent className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                       ) : (
-                        <DollarSign className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+                        <Euro className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                       )}
                     </div>
                     <input
@@ -229,7 +229,7 @@ function App() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                    Bid-Ask Spread ($ per share)
+                    Bid-Ask Spread (€ per share)
                   </label>
                   <input
                     type="number"
@@ -244,7 +244,7 @@ function App() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                      Brokerage Fee {isBrokeragePercentage ? '(% of investment)' : '($ per trade)'}
+                      Brokerage Fee {isBrokeragePercentage ? '(% of investment)' : '(€ per trade)'}
                     </label>
                     <button
                       onClick={() => setIsBrokeragePercentage(!isBrokeragePercentage)}
@@ -259,7 +259,7 @@ function App() {
                       {isBrokeragePercentage ? (
                         <Percent className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                       ) : (
-                        <DollarSign className="h-4 w-4 text-gray-400 dark:text-gray-500" />
+                        <Euro className="h-4 w-4 text-gray-400 dark:text-gray-500" />
                       )}
                     </div>
                     <input
@@ -324,16 +324,16 @@ function App() {
                   <h3 className="text-sm font-medium text-indigo-800 dark:text-indigo-200 mb-2">Investment Summary</h3>
                   <div className="space-y-2">
                     <p className="text-sm text-indigo-600 dark:text-indigo-300">
-                      Start Capital: <span className="font-semibold">${inputs.startCapital.toLocaleString()}</span>
+                      Start Capital: <span className="font-semibold">€{inputs.startCapital.toLocaleString()}</span>
                     </p>
                     <p className="text-sm text-indigo-600 dark:text-indigo-300">
-                      {inputs.isMonthly ? 'Monthly' : 'Yearly'} Investment: <span className="font-semibold">${inputs.recurringAmount.toLocaleString()}</span>
+                      {inputs.isMonthly ? 'Monthly' : 'Yearly'} Investment: <span className="font-semibold">€{inputs.recurringAmount.toLocaleString()}</span>
                     </p>
                     <p className="text-sm text-indigo-600 dark:text-indigo-300">
-                      Total Invested: <span className="font-semibold">${totalInvested.toLocaleString()}</span>
+                      Total Invested: <span className="font-semibold">€{totalInvested.toLocaleString()}</span>
                     </p>
                     <p className="text-sm text-indigo-600 dark:text-indigo-300">
-                      Final Value: <span className="font-semibold">${results.finalInvestmentValue.toLocaleString()}</span>
+                      Final Value: <span className="font-semibold">€{results.finalInvestmentValue.toLocaleString()}</span>
                     </p>
                   </div>
                 </div>
@@ -341,19 +341,19 @@ function App() {
                 <div>
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Expense Ratio Cost</h3>
                   <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    ${results.expenseRatioCost.toFixed(2)}
+                    €{results.expenseRatioCost.toFixed(2)}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     {isPercentageMode 
                       ? `${inputs.expenseRatio}% of average portfolio value for ${inputs.holdingPeriod} years`
-                      : `$${inputs.expenseRatioFixed} per year for ${inputs.holdingPeriod} years`}
+                      : `€${inputs.expenseRatioFixed} per year for ${inputs.holdingPeriod} years`}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Trading Costs</h3>
                   <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    ${results.tradingCosts.toFixed(2)}
+                    €{results.tradingCosts.toFixed(2)}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     Based on {inputs.isMonthly ? 'monthly' : 'yearly'} investments
@@ -363,28 +363,28 @@ function App() {
                 <div>
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Dividend Taxes</h3>
                   <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    ${results.dividendTaxes.toFixed(2)}
+                    €{results.dividendTaxes.toFixed(2)}
                   </p>
                 </div>
 
                 <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Costs</h3>
                   <p className="mt-1 text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                    ${results.totalCosts.toFixed(2)}
+                    €{results.totalCosts.toFixed(2)}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Annualized TCO</h3>
                   <p className="mt-1 text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                    ${results.annualizedTCO.toFixed(2)}/year
+                    €{results.annualizedTCO.toFixed(2)}/year
                   </p>
                 </div>
 
                 <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Returns (Before Costs)</h3>
                   <p className="mt-1 text-2xl font-bold text-green-600 dark:text-green-400">
-                    ${results.totalReturns.toFixed(2)}
+                    €{results.totalReturns.toFixed(2)}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     Based on {inputs.expectedReturn}% annual return + {inputs.dividendYield}% dividend yield
@@ -394,7 +394,7 @@ function App() {
                 <div>
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Net Returns (After Costs)</h3>
                   <p className="mt-1 text-2xl font-bold text-green-600 dark:text-green-400">
-                    ${results.netReturns.toFixed(2)}
+                    €{results.netReturns.toFixed(2)}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     Total Returns - Total Costs
