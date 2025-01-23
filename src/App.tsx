@@ -19,7 +19,7 @@ function App() {
     recurringAmount: 500,
     isMonthly: true,
     holdingPeriod: 20,
-    expenseRatio: 0,
+    expenseRatio: 0.12,
     expenseRatioFixed: 0,
     bidAskSpread: 0.03,
     brokerageFee: 5,
@@ -198,7 +198,7 @@ function App() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-                      Expense Ratio {isPercentageMode ? '(%)' : '(€ per year)'}
+                      Expense Ratio (TER) {isPercentageMode ? '(%)' : '(€ per year)'}
                     </label>
                     <button
                       onClick={() => setIsPercentageMode(!isPercentageMode)}
