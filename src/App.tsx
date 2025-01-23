@@ -15,19 +15,19 @@ interface TCOCalculation {
 
 function App() {
   const [inputs, setInputs] = useState({
-    startCapital: 10000,
+    startCapital: 1000,
     recurringAmount: 500,
     isMonthly: true,
-    holdingPeriod: 5,
-    expenseRatio: 0.20,
-    expenseRatioFixed: 20,
-    bidAskSpread: 0.05,
-    brokerageFee: 10,
-    brokerageFeePercent: 0.1,
+    holdingPeriod: 20,
+    expenseRatio: 0,
+    expenseRatioFixed: 0,
+    bidAskSpread: 0.03,
+    brokerageFee: 5,
+    brokerageFeePercent: 0,
     numberOfShares: 200,
-    dividendYield: 2,
-    dividendTaxRate: 15,
-    expectedReturn: 7,
+    dividendYield: 0,
+    dividendTaxRate: 0,
+    expectedReturn: 8,
   });
 
   const [isPercentageMode, setIsPercentageMode] = useState(true);
